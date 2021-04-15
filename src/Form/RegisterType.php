@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -21,9 +22,16 @@ class RegisterType extends AbstractType
             ->add('firstname', TextType::class, ['label' => 'Your firstname', 'attr' => ['placeholder' => 'please enter your firstname.']])
             ->add('lastname', TextType::class, ['label' => 'Your lastname', 'attr' => ['placeholder' => "please enter your lastname."]])
             ->add('email', EmailType::class, ['label' => 'Your Email', 'attr' => ['placeholder' => "please enter your e-mail."]])
-            ->add('password', PasswordType::class, ['label' => 'Your password', 'attr' => ['placeholder' => "please enter your password."]])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'the password should be the same as confirmed password.',
+                'label' => 'Your password',
+                'required' => true,
+                'first_options' => ['label' => 'password'],
+                'second_options' => ['label' => 'confirm your password.']
+            ])
 
-            ->add('password_confirm', PasswordType::class, ['label' => "Confirm your password.", 'mapped' => false, 'attr' => ['placeholder' => 'please enter your password again.']])
+
             ->add('submit', SubmitType::class, ['label' => 'Register']);
     }
 
