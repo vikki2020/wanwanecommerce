@@ -45,8 +45,12 @@ class RegisterType extends AbstractType
                 'invalid_message' => 'the password should be the same as confirmed password.',
                 'label' => 'Your password',
                 'required' => true,
-                'first_options' => ['label' => 'password'],
-                'second_options' => ['label' => 'confirm your password.']
+                'first_options' => ['label' => 'password',  'attr' => [
+                    'placeholder' => "please enter your password."
+                ]],
+                'second_options' => ['label' => 'confirm your password.',  'attr' => [
+                    'placeholder' => "please confirm your password."
+                ]]
             ])
 
 
