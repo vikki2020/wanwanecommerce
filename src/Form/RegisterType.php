@@ -13,15 +13,33 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Locale;
 
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, ['label' => 'Your firstname', 'attr' => ['placeholder' => 'please enter your firstname.']])
-            ->add('lastname', TextType::class, ['label' => 'Your lastname', 'attr' => ['placeholder' => "please enter your lastname."]])
-            ->add('email', EmailType::class, ['label' => 'Your Email', 'attr' => ['placeholder' => "please enter your e-mail."]])
+            ->add('firstname', TextType::class, [
+                'label' => 'Your firstname',
+                'constraints' => new Length(0, 2, 30),
+                'attr' => ['placeholder' => 'please enter your firstname.']
+            ])
+            ->add('lastname', TextType::class, [
+                'label' => 'Your lastname',
+                'constraints' => new Length(0, 2, 30),
+                'attr' => [
+                    'placeholder' => "please enter your lastname."
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Your Email',
+                'constraints' => new Length(0, 2, 60),
+                'attr' => [
+                    'placeholder' => "please enter your e-mail."
+                ]
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'the password should be the same as confirmed password.',
