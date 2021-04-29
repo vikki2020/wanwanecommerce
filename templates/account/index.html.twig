@@ -6,5 +6,7 @@
 <h1>My Account</h1>
 <p>Welcome {{app.user.firstname}} ! Here you can manage your personal info ;)</p>
 <hr>
-  <a href="{{ path('account_password') }}">modify your password</a><br/>
+  <a href="{{ path('account_password') }}">modify my password</a><br/>
+  <a href="{{ path('account_address') }}">modify my address</a>
+         
 {% endblock %}
