@@ -53,8 +53,7 @@
         <div class="text-right mb-5">
             <b>Amount of the product:</b> {{ cart|length }}<br/>
             <b>Total Price from my cart :</b> {{ (total / 100)|number_format(2, ',', '.') }} €
-             <a  class="btn btn-success btn-block mt-3">Proceed my order</a>
-            {# <a href="{{ path('order') }}" class="btn btn-success btn-block mt-3">Proceed my order</a> #}
+            <a href="{{ path('order') }}" class="btn btn-success btn-block mt-3">Proceed my order</a>
         </div>
     {% else %}
         <hr>

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirm my order - Wanwan Boutique{% endblock %}
+
+{% block content %}
+    <h2>Confirm my order</h2>
+    <p>choose your peference before confirming your order.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+                {{ form_start(form, {action:path('order_sum')}) }}
+                    {{ form_label(form.addresses, 'choose the address for delivery') }}
+                    <a href="{{ path('account_address_add') }}">Add one new address</a>
+                {{ form_end(form) }}
+            {% endset %}
+            {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>overview my order</b><br/>
+                <p>Find the summary of the products.</p>
+            </div>
+            <div class="order-summary">
+                {% for key,product in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-5">
+                            <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="75px">
+                        </div>
+                        <div class="col-8 my-auto">
+                            {{ product.product.name }}<br/>
+                            <small>{{ product.product.subtitle }}</small>
+                        </div>
+                        <div class="col-2 my-auto">
+                            x {{ product.quantity }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
