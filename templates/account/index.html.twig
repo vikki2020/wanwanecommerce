@@ -3,7 +3,11 @@
 {% block title %}My Account- Wanwan Boutique{% endblock %}
 
 {% block content %}
-<h1>My Account</h1>
+<h1>My Account</h1> 
+{% if is_granted('ROLE_ADMIN') %}
+        <small><a href="/admin">You're admin,connect to back office ?</a></small><br/>
+    {% endif %}
+
 <p>Welcome {{app.user.firstname}} ! Here you can manage your personal info ;)</p>
 <hr>
   <a href="{{ path('account_password') }}">modify my password</a><br/>
